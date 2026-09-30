@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#100d0a" />
+    <meta name="description" content="Devine un personnage emblématique de World of Warcraft grâce aux indices de race, faction, rôle et époque." />
+    <title>WoWdle — Le personnage mystère</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=Cinzel:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 10l10 42 14-25 14 25 10-42-10 9-5 20-9-18-9 18-5-20z' fill='%23d9a441' stroke='%23100d0a' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./wow.css" />
+    <link rel="stylesheet" href="./arcade.css" />
+  <link rel="stylesheet" href="/game-theme.css?v=40"><link rel="stylesheet" href="/reveal-mode.css" />
+<link rel="stylesheet" href="/idle-trials.css" /><link rel="stylesheet" href="/idle-challenges.css" /><link rel="stylesheet" href="/idle-hud.css?v=61"></head>
+  <body class="arcade-page wow-page ld-game idle-unified" data-game="wow">
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="home-link" href="./">← ACCUEIL</a>
+        <a class="brand wow-brand" href="./wow.html" aria-label="WoWdle, accueil">
+          <span class="wow-brand-mark" aria-hidden="true">W</span>
+          <span>WOW<b>DLE</b></span>
+        </a>
+
+        <div class="top-actions">
+          <div class="streak-pill" title="Série de victoires">
+            <span aria-hidden="true">🔥</span>
+            <span><b id="wowStreakCount">0</b> série</span>
+          </div>
+          <button class="icon-button" id="wowNewGameButton" type="button" aria-label="Nouvelle partie" title="Nouvelle partie">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 1 1-2.3-5.7L20 7.6M20 3v4.6h-4.6"/></svg>
+          </button>
+        </div>
+      </header><div class="ld-game-switch"><a href="/home.html">LORE DIFF · TOUS LES JEUX</a><details><summary>Changer de jeu</summary><nav aria-label="Choisir un jeu"><a href="/rift-id.html">LoLidle</a><a href="/wow.html" aria-current="page">WoWidle</a><a href="/pokemon.html">Pokéidle</a><a href="/streetidle.html">Streetidle</a><a href="/sound.html">Intrus Check</a><a href="/screen.html">Screen Check</a><a href="/daily.html">Défi du jour</a><a href="/run.html">Azeroth Run</a><a href="/play/pokemon">Pokémon Run</a><a href="/play/runeterra">Runeterra Run</a><a href="/play/dofus">Krosmoz Run</a><a href="/multi?mode=mega">Multijoueur</a></nav></details></div>
+
+<nav class="rv-tabs" aria-label="Mode de jeu"><button type="button" data-rv-tab="classic" aria-pressed="true">Personnage</button><button type="button" data-rv-tab="butin" aria-pressed="false">Butin</button><button type="button" data-rv-tab="equipement" aria-pressed="false">Qui porte ça ?</button><button type="button" data-rv-tab="raid" aria-pressed="false">L’Intrus du raid</button></nav><div id="rv-classic" data-idle-panel="classic">      <section class="game-panel wow-game-panel" aria-labelledby="wowGameTitle">
+        <div class="challenge-bar" aria-label="Niveau de difficulté">
+          <div class="difficulty-switch">
+            <span>DIFFICULTÉ</span>
+            <button class="difficulty-button" data-difficulty="free" type="button">LIBRE</button>
+            <button class="difficulty-button active" data-difficulty="ranked" type="button">CLASSÉ</button>
+            <button class="difficulty-button" data-difficulty="nightmare" type="button">CAUCHEMAR</button>
+          </div>
+          <div class="challenge-readout"><span id="challengeModifier">TOUTES FACTIONS</span><b id="challengeAttempts">8 ESSAIS RESTANTS</b></div>
+        </div>
+        <div class="intro-copy">
+          <div class="eyebrow"><span></span>ARCHIVES D’AZEROTH · 106 FIGURES</div>
+          <h1 id="wowGameTitle">Qui a marqué<br /><em>Azeroth&nbsp;?</em></h1>
+          <p>Propose un personnage. Race, camp, rôle et époque révéleront peu à peu son identité.</p>
+        </div>
+
+        <div class="mystery-card wow-mystery-card" aria-hidden="true">
+          <div class="wow-rune rune-one"></div>
+          <div class="wow-rune rune-two"></div>
+          <div class="mystery-symbol">?</div>
+          <div class="mystery-label">IDENTITÉ SCELLÉE</div>
+        </div>
+
+        <form class="guess-form" id="wowGuessForm" autocomplete="off">
+          <label for="wowCharacterInput">Ton personnage</label>
+          <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.4-4.4m2.4-5.1a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+            <input id="wowCharacterInput" name="character" type="text" placeholder="Ex. Arthas" aria-autocomplete="list" aria-controls="wowSuggestions" aria-expanded="false" spellcheck="false" />
+            <button class="submit-button" id="wowSubmitButton" type="submit">
+              <span>VALIDER</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
+            </button>
+            <div class="suggestions" id="wowSuggestions" role="listbox" hidden></div>
+          </div>
+          <div class="form-meta">
+            <span class="ready"><i></i>Archives prêtes · 106 personnages</span>
+            <span id="wowAttemptCount">0 tentative</span>
+          </div>
+          <p class="form-message" id="wowFormMessage" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="result-card wow-result-card" id="wowResultCard" hidden aria-live="polite">
+        <div class="result-art-wrap wow-result-art">
+          <div class="result-halo"></div>
+          <div class="portrait-placeholder result-placeholder" id="wowResultPlaceholder">?</div>
+          <img id="wowResultImage" src="" alt="" hidden />
+        </div>
+        <div class="result-copy">
+          <div class="eyebrow win"><span></span>IDENTITÉ RÉVÉLÉE</div>
+          <h2 id="wowResultTitle">Victoire !</h2>
+          <p id="wowResultText"></p>
+          <div class="result-actions">
+            <button class="primary-button" id="wowPlayAgainButton" type="button">Rejouer</button>
+            <button class="ghost-button" id="wowShareButton" type="button">Copier le résultat</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="attempts-section wow-attempts" aria-labelledby="wowAttemptsTitle">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">CHRONIQUES</span>
+            <h2 id="wowAttemptsTitle">Tes tentatives</h2>
+          </div>
+          <div class="legend" aria-label="Légende">
+            <span><i class="legend-good"></i>Correct</span>
+            <span><i class="legend-bad"></i>Incorrect</span>
+          </div>
+        </div>
+
+        <div class="attempts-table">
+          <div class="table-head wow-table-head" aria-hidden="true">
+            <span>Personnage</span><span>Race</span><span>Faction</span><span>Rôle</span><span>Genre</span><span>État</span><span>Ère</span>
+          </div>
+          <div class="empty-state" id="wowEmptyState">
+            <div class="wow-empty-rune" aria-hidden="true">?</div>
+            <h3>Les archives attendent un nom.</h3>
+            <p>Une caractéristique dorée correspond exactement au personnage mystère.</p>
+          </div>
+          <div id="wowAttemptRows"></div>
+        </div>
+      </section>
+
+</div><section id="rv-mode" data-idle-panel="butin" hidden aria-label="Butin"></section><section id="it-mode" data-idle-panel="equipement" aria-label="Qui porte ça ?" hidden></section><section id="ic-mode" data-idle-panel="raid" hidden aria-label="Défis supplémentaires"></section>      <footer>
+        <span>WoWdle · mode Warcraft</span>
+        <span>Portraits issus de Warcraft Wiki.</span>
+      </footer>
+    </main>
+
+    <script src="./challenge.js" defer></script>
+    <script src="./wow.js" defer></script>
+  <script src="/arcade-fx.js"></script><script type="module" src="/reveal-mode.js"></script><script type="module" src="/idle-trials.js"></script><script type="module" src="/idle-challenges.mjs"></script></body>
+</html>

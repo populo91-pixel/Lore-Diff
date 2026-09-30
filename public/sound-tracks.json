@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "name": "Minecraft",
+    "aliases": [
+      "minecraft"
+    ],
+    "track": "Sweden",
+    "artist": "C418",
+    "album": "Minecraft",
+    "genre": "Bac à sable"
+  },
+  {
+    "id": 2,
+    "name": "Undertale",
+    "aliases": [
+      "undertale"
+    ],
+    "track": "MEGALOVANIA",
+    "artist": "Toby Fox",
+    "album": "Undertale",
+    "genre": "RPG"
+  },
+  {
+    "id": 3,
+    "name": "The Elder Scrolls V: Skyrim",
+    "aliases": [
+      "skyrim",
+      "elder scrolls",
+      "tes v"
+    ],
+    "track": "Dragonborn",
+    "artist": "Jeremy Soule",
+    "album": "Skyrim",
+    "genre": "RPG"
+  },
+  {
+    "id": 4,
+    "name": "Halo: Combat Evolved",
+    "aliases": [
+      "halo",
+      "halo 1",
+      "halo combat evolved"
+    ],
+    "track": "Halo",
+    "artist": "Martin O'Donnell",
+    "album": "Halo",
+    "genre": "FPS"
+  },
+  {
+    "id": 5,
+    "name": "Final Fantasy VII",
+    "aliases": [
+      "final fantasy",
+      "ff7",
+      "ff vii",
+      "final fantasy 7"
+    ],
+    "track": "One-Winged Angel",
+    "artist": "Nobuo Uematsu",
+    "album": "Final Fantasy VII",
+    "genre": "JRPG"
+  },
+  {
+    "id": 6,
+    "name": "Sonic the Hedgehog",
+    "aliases": [
+      "sonic",
+      "sonic 1"
+    ],
+    "track": "Green Hill Zone",
+    "artist": "Masato Nakamura",
+    "album": "Sonic",
+    "genre": "Plateforme"
+  },
+  {
+    "id": 7,
+    "name": "World of Warcraft",
+    "aliases": [
+      "wow",
+      "world of warcraft",
+      "warcraft"
+    ],
+    "track": "Legends of Azeroth",
+    "artist": "Jason Hayes",
+    "album": "World of Warcraft",
+    "genre": "MMORPG"
+  },
+  {
+    "id": 8,
+    "name": "Assassin's Creed II",
+    "aliases": [
+      "assassins creed",
+      "assassin creed",
+      "ac2",
+      "assassins creed 2"
+    ],
+    "track": "Ezio's Family",
+    "artist": "Jesper Kyd",
+    "album": "Assassin",
+    "genre": "Action-aventure"
+  },
+  {
+    "id": 9,
+    "name": "DOOM (2016)",
+    "aliases": [
+      "doom",
+      "doom 2016"
+    ],
+    "track": "Bfg Division",
+    "artist": "Mick Gordon",
+    "album": "Doom",
+    "genre": "FPS"
+  },
+  {
+    "id": 10,
+    "name": "The Witcher 3: Wild Hunt",
+    "aliases": [
+      "witcher",
+      "witcher 3",
+      "the witcher 3"
+    ],
+    "track": "Geralt of Rivia",
+    "artist": "Marcin Przybyłowicz",
+    "album": "Witcher 3",
+    "genre": "RPG"
+  }
+]

@@ -1,0 +1,27 @@
+import {CLIPS,poseAt,sceneLayout,travelAt} from './boss-motion.mjs';
+const canvas=document.getElementById('world'),ctx=canvas.getContext('2d',{alpha:false}),game=document.getElementById('game');
+let background,sheets={},ready,raf=0,last=0,geometry=null;
+const actors={hero:{kind:'idle',at:0},enemy:{kind:'idle',at:0}};
+const reduced=()=>document.body.classList.contains('motion-reduced')||matchMedia('(prefers-reduced-motion: reduce)').matches;
+function load(src){return new Promise((resolve,reject)=>{const im=new Image(),timer=setTimeout(()=>{im.src='';reject(new Error('Les images mettent trop de temps à charger. Réessaie.'));},8000);im.onload=()=>{clearTimeout(timer);resolve(im)};im.onerror=()=>{clearTimeout(timer);reject(new Error('Le décor n’a pas chargé. Réessaie.'))};im.src=src;});}
+function crop(image,x,y,w,h,width,height){const c=document.createElement('canvas');c.width=width;c.height=height;const cx=c.getContext('2d');cx.imageSmoothingEnabled=false;cx.drawImage(image,x,y,w,h,0,0,width,height);return c;}
+// Pose-specific source regions share one pixel scale and a fixed ground anchor.
+const REGIONS={hero:[[0,70,390,440,220,500],[390,70,390,440,575,500],[780,70,385,440,945,500],[1165,70,371,440,1340,500],[0,530,455,410,270,918],[455,530,335,410,610,918],[790,530,385,410,975,918],[1175,530,361,410,1370,918]],enemy:[[0,100,390,385,205,463],[390,100,385,385,585,463],[775,100,370,385,965,463],[1145,100,391,385,1345,463],[0,520,380,400,205,895],[380,520,405,400,585,895],[785,520,365,400,965,895],[1150,520,386,400,1345,895]]};
+function frames(image,id){return REGIONS[id].map(([x,y,w,h,ax,ay])=>{const c=document.createElement('canvas');c.width=128;c.height=128;const cx=c.getContext('2d');cx.imageSmoothingEnabled=false;cx.drawImage(image,x,y,w,h,64+(x-ax)/4,120+(y-ay)/4,w/4,h/4);return c;});}
+function resize(){const r=canvas.getBoundingClientRect();if(!r.width||!r.height)return;canvas.width=r.width<700?480:960;canvas.height=Math.round(canvas.width*r.height/r.width);geometry=sceneLayout(canvas.width,canvas.height);const scale=r.width/canvas.width;for(const id of ['hero','enemy']){const g=geometry[id],el=document.getElementById(id);Object.assign(el.style,{left:`${(g.x-g.w/2)*scale}px`,top:`${(g.y-g.h)*scale}px`,width:`${g.w*scale}px`,height:`${g.h*scale}px`,right:'auto'});}ctx.imageSmoothingEnabled=false;render(performance.now());wakeWorld();}
+export async function prepareWorld(){if(ready)return ready;ready=(async()=>{const [bg,h,e]=await Promise.all([load('/assets/boss/bridge.png'),load('/assets/boss/hero-poses.png'),load('/assets/boss/wyvern-poses.png')]);background=crop(bg,0,0,bg.width,bg.height,512,342);sheets={hero:frames(h,'hero'),enemy:frames(e,'enemy')};resize();})();try{await ready}catch(e){ready=null;throw e;}}
+export function actorMotion(id,kind){actors[id]={kind,at:performance.now()};wakeWorld();}
+export function wakeWorld(){if(!background||document.hidden)return;cancelAnimationFrame(raf);last=0;raf=requestAnimationFrame(frame);}
+function frame(now){if(document.hidden)return;if(now-last>=30){render(now);last=now;}if(!reduced()||Object.values(actors).some(a=>now-a.at<1200))raf=requestAnimationFrame(frame);}
+function render(now){if(!background||!geometry)return;const W=canvas.width,H=canvas.height,muted=reduced(),rage=document.getElementById('arena').classList.contains('rage');ctx.imageSmoothingEnabled=false;ctx.fillStyle='#203246';ctx.fillRect(0,0,W,H);const b=geometry.background;ctx.drawImage(background,Math.round(b.x),Math.round(b.y),Math.round(b.w),Math.round(b.h));if(rage){ctx.fillStyle='#be402014';ctx.fillRect(0,0,W,H);}
+ for(const id of ['enemy','hero']){const g=geometry[id],a=actors[id],elapsed=now-a.at,clip=CLIPS[id][a.kind]||CLIPS[id].idle,duration=clip.frames.length*clip.step;let kind=!clip.loop&&elapsed>=duration?'idle':a.kind;const dead=document.getElementById(id).classList.contains('defeated');if(dead&&id==='enemy')kind='defeated';const pose=muted?(dead&&id==='enemy'?7:0):poseAt(id,kind,kind==='idle'?now:elapsed),img=sheets[id][pose];let x=g.x,y=g.y;const t=Math.min(1,elapsed/duration),distance=geometry.hero.x-geometry.enemy.x;
+ if(!muted){x+=travelAt(id,kind,t,distance);if(kind==='hurt')x+=(id==='hero'?1:-1)*Math.sin(t*Math.PI)*8;}
+ // A warm back light and two contact shadows place each actor on the same stone plane.
+ ctx.fillStyle='#30233833';ctx.beginPath();ctx.ellipse(x+g.w*.12,y+3,g.w*.34,g.h*.065,-.12,0,Math.PI*2);ctx.fill();ctx.fillStyle='#191b3266';ctx.beginPath();ctx.ellipse(x,y+1,g.w*.21,g.h*.028,0,0,Math.PI*2);ctx.fill();
+ ctx.save();if(dead)ctx.globalAlpha=.48;else if(kind==='hurt'&&t<.7&&!muted)ctx.globalAlpha=Math.floor(t*10)%2?.65:1;
+ const size=g.h*1.6;ctx.drawImage(img,Math.round(x-size/2),Math.round(y-size*120/128),Math.round(size),Math.round(size));ctx.restore();
+ if(!muted&&kind==='strike'&&t<.27){ctx.fillStyle='#d5bc8b70';for(let i=0;i<4;i++){const age=t*3+i*.14;ctx.fillRect(Math.round(x+(id==='hero'?1:-1)*(12+i*7)),Math.round(y-2-age*7),3,2);}}
+ }
+ if(!muted){for(let i=0;i<10;i++){const x=(i*83+now*.008)%W,y=H-((now*.018+i*67)%H);ctx.globalAlpha=.17+Math.sin(i+now/1200)*.12;ctx.fillStyle='#ffe1a1';ctx.fillRect(Math.round(x),Math.round(y),2,2);}ctx.globalAlpha=1;}
+}
+new ResizeObserver(resize).observe(game);document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else wakeWorld()});addEventListener('pagehide',()=>cancelAnimationFrame(raf));addEventListener('pageshow',wakeWorld);matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',wakeWorld);

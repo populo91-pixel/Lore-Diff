@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Quatre propositions, un intrus. Cinq manches de culture jeu vidéo, trois vies et une explication à chaque réponse.">
+  <title>Trouve l’intrus — Lore Diff</title>
+  <link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./arcade.css"><link rel="stylesheet" href="./intrus.css">
+  <script type="module" src="./intrus.js"></script>
+<link rel="stylesheet" href="/game-theme.css?v=40"></head>
+<body class="arcade-page intrus-page ld-game" data-game="intrus">
+<main class="app-shell">
+  <header class="topbar"><a class="home-link" href="./home">← TOUS LES JEUX</a><a class="brand" href="./sound.html"><span class="brand-mark">04</span><span>INTRUS<b>//CHECK</b></span></a><span class="local-best">RECORD <b id="record">—</b></span></header><div class="ld-game-switch"><a href="/home.html">LORE DIFF · TOUS LES JEUX</a><details><summary>Changer de jeu</summary><nav aria-label="Choisir un jeu"><a href="/rift-id.html">LoLidle</a><a href="/wow.html">WoWidle</a><a href="/pokemon.html">Pokéidle</a><a href="/sound.html" aria-current="page">Intrus Check</a><a href="/screen.html">Screen Check</a><a href="/daily.html">Défi du jour</a><a href="/run.html">Azeroth Run</a><a href="/play/pokemon">Pokémon Run</a><a href="/play/runeterra">Runeterra Run</a><a href="/play/dofus">Krosmoz Run</a><a href="/multi?mode=mega">Multijoueur</a></nav></details></div>
+  <section class="intrus-shell" aria-labelledby="gameTitle">
+    <div class="game-heading"><div><p class="eyebrow">CULTURE JEU VIDÉO / SOLO</p><h1 id="gameTitle">TROUVE <em>L’INTRUS.</em></h1></div><span class="stamp" aria-hidden="true">3 + 1</span></div>
+    <section id="welcome" class="welcome">
+      <p class="lead">Quatre propositions. Trois ont un point commun.<br><strong>Élimine celle qui n’a rien à faire là.</strong></p>
+      <div class="rule-strip"><p><b>05</b><span>manches</span></p><p><b>03</b><span>vies</span></p><p><b>∞</b><span>temps pour réfléchir</span></p></div>
+      <p class="scoring">Bonne réponse : 1 000 points. Jusqu’à 300 points de rapidité et 300 de série en bonus. Une erreur coûte une vie.</p>
+      <button class="main-button" id="start" type="button">LANCER LA PARTIE <span aria-hidden="true">↗</span></button>
+      <p class="keyboard-note">Sur ordinateur : touches 1 à 4 pour choisir. Entrée pour continuer.</p>
+      <noscript><p>Active JavaScript pour jouer à Trouve l’intrus.</p></noscript>
+    </section>
+    <section id="arena" hidden aria-label="Partie en cours">
+      <div class="scoreboard"><div><span>MANCHE</span><b id="round">1 / 5</b></div><div><span>VIES</span><b id="lives">3 / 3</b></div><div><span>SCORE</span><b id="score">0</b></div><div><span>SÉRIE</span><b id="streak">0</b></div></div>
+      <div id="progress" class="round-progress" aria-label="Progression des manches"></div>
+      <div class="question-heading"><p id="category" class="eyebrow"></p><span id="difficulty"></span></div>
+      <h2 id="prompt" tabindex="-1"></h2>
+      <div class="choices" id="choices" aria-labelledby="prompt"></div>
+      <section class="feedback" id="feedback" aria-live="polite" aria-atomic="true" hidden><p class="verdict" id="verdict"></p><p id="explanation"></p><p class="earned" id="earned"></p></section>
+      <div class="round-footer"><p id="roundNote">Prends ton temps. Seul le bonus de rapidité diminue.</p><button class="main-button" type="button" id="next" hidden>MANCHE SUIVANTE →</button></div>
+    </section>
+    <section id="finish" class="finish" hidden aria-labelledby="finishTitle">
+      <p class="eyebrow" id="finishLabel"></p><h2 id="finishTitle" tabindex="-1"></h2><p class="final-score"><b id="finalScore"></b><span>POINTS</span></p>
+      <p id="summary"></p><p class="new-record" id="newRecord" hidden>NOUVEAU RECORD SUR CET APPAREIL</p>
+      <div class="finish-actions"><button class="main-button" id="replay" type="button">UNE AUTRE PARTIE ↗</button><a href="./home" class="secondary-link">Choisir un autre jeu</a></div>
+      <details><summary>Revoir mes réponses</summary><ol id="review"></ol></details>
+    </section>
+    <p id="loadError" role="alert" hidden>Le jeu n’a pas pu démarrer. Recharge la page.</p>
+  </section>
+  <footer class="intrus-footer"><span>LORE DIFF / MACHINE 06</span><span>36 défis · Personnages, objets, lieux et univers.</span></footer>
+</main>
+<script src="/arcade-fx.js"></script></body></html>

@@ -1,0 +1,84 @@
+/* Run-specific layout; the common Lore Diff theme supplies colors and typography. */
+.ld-game[data-game=run] .start-screen{grid-template-columns:minmax(0,1.5fr) minmax(260px,1fr)}
+.ld-game[data-game=run] .start-main{min-height:0}
+.ld-game[data-game=run] .family-roster li{grid-template-columns:40px 1fr;min-height:96px}
+.ld-game[data-game=run] .family-roster li small{line-height:1.5;color:#c8bcd6;font-size:14px;letter-spacing:0}
+.ld-game[data-game=run] .quiz-screen{grid-template-columns:175px minmax(0,1fr);gap:16px;min-height:0;margin:20px 0}
+.ld-game[data-game=run] .run-rail{padding:24px 15px}
+.ld-game[data-game=run] .run-rail ol{margin:18px 0 24px}
+.ld-game[data-game=run] .run-rail li{font-size:16px;letter-spacing:0;gap:9px;min-height:32px}
+.ld-game[data-game=run] .question-stage{padding:24px;max-width:1040px}
+.ld-game[data-game=run] .question-stage.media-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);column-gap:24px;align-content:start}
+.ld-game[data-game=run] .media-layout>.question-head,.ld-game[data-game=run] .media-layout>.timer-track,.ld-game[data-game=run] .media-layout>.feedback,.ld-game[data-game=run] .media-layout>.media-problem{grid-column:1/-1}
+.ld-game[data-game=run] .media-layout>.visual-panel{grid-column:1;grid-row:3/5;align-self:start}
+.ld-game[data-game=run] .media-layout>.question-copy,.ld-game[data-game=run] .media-layout>.answer-grid{grid-column:2}
+.ld-game[data-game=run] .media-layout>.question-copy{grid-row:3}
+.ld-game[data-game=run] .media-layout>.answer-grid{grid-row:4}
+.ld-game[data-game=run] .media-layout>.media-problem{grid-row:5}
+.ld-game[data-game=run] .media-layout>.feedback{grid-row:6}
+.ld-game[data-game=run] .question-copy{padding:0 0 20px}
+.ld-game[data-game=run] .question-copy h2{font-size:clamp(28px,3vw,40px);line-height:1.1;outline:none}
+.ld-game[data-game=run] .question-copy>span{font-size:12px;letter-spacing:.06em}
+.ld-game[data-game=run] .question-head strong{font-size:23px;letter-spacing:0}
+.ld-game[data-game=run] .question-head span{font-size:12px;letter-spacing:0}
+.ld-game[data-game=run] .answer-grid{align-content:start}
+.ld-game[data-game=run] .media-layout .answer-grid{grid-template-columns:1fr}
+.ld-game[data-game=run] .answer-grid button{min-height:58px;padding:10px 12px;grid-template-columns:24px 1fr;line-height:1.2}
+.ld-game[data-game=run] .answer-button span{font:600 19px 'Barlow Condensed',sans-serif;overflow-wrap:anywhere}
+.ld-game[data-game=run] .visual-panel{min-height:260px}
+.ld-game[data-game=run] .visual-panel #questionImage{height:330px}
+.ld-game[data-game=run] .visual-panel.character-active #questionImage{height:clamp(320px,45vh,440px);object-fit:contain}
+.ld-game[data-game=run] .visual-panel.silhouette-active #questionImage{height:330px;object-fit:contain;width:90%;filter:blur(15px)}
+.ld-game[data-game=run] .visual-panel.silhouette-active.revealed #questionImage{filter:none}
+.ld-game[data-game=run] .visual-panel.emblem-active #questionImage{height:300px;padding:24px}
+.ld-game[data-game=run] .visual-panel.audio-active{min-height:300px}
+.ld-game[data-game=run] .audio-console{width:calc(100% - 28px);gap:20px}
+.ld-game[data-game=run] .audio-wave{height:80px;gap:7px}
+.ld-game[data-game=run] .audio-console button{padding:10px;min-height:52px;font-size:14px;letter-spacing:0}
+.ld-game[data-game=run] .audio-console>span{font-size:11px;line-height:1.4;letter-spacing:0}
+.ld-game[data-game=run] .visual-panel.geo-active{min-height:0;padding:10px}
+.ld-game[data-game=run] .geo-board{width:min(250px,100%)}
+.ld-game[data-game=run] .geo-board .geo-map-image{height:100%;object-fit:fill}
+.ld-game[data-game=run] .geo-instruction{top:8px;font-size:10px;letter-spacing:0}
+.ld-game[data-game=run] .geo-confirm{position:relative;right:auto;bottom:auto;width:100%;margin-top:12px;min-height:46px}
+.ld-game[data-game=run] .subject-tag{min-width:0;max-width:90%;left:10px;bottom:10px;padding:8px}
+.ld-game[data-game=run] .subject-tag b{font-size:24px}
+.ld-game[data-game=run] .feedback{gap:16px;padding:18px;align-items:center}
+.ld-game[data-game=run] .feedback p{font-size:16px;color:#ded5e7}
+.ld-game[data-game=run] .feedback button{min-width:170px;font-size:16px;letter-spacing:0}
+.ld-game[data-game=run] .end-copy>.family-recap{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0}
+.ld-game[data-game=run] .family-recap span{padding:12px;background:#211b30;border-left:3px solid var(--ld-accent);font-size:18px}
+@media(max-width:1000px){.ld-game[data-game=run] .quiz-screen{grid-template-columns:1fr}.ld-game[data-game=run] .run-rail{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:20px;padding:12px 18px}.ld-game[data-game=run] .rail-label{display:none}.ld-game[data-game=run] .run-rail ol{display:flex;gap:10px;margin:0;flex-wrap:wrap}.ld-game[data-game=run] .run-rail li{font-size:0;min-height:0;gap:0}.ld-game[data-game=run] .score-block,.ld-game[data-game=run] .combo-block{border:0;padding:0}.ld-game[data-game=run] .score-block strong,.ld-game[data-game=run] .combo-block strong{font-size:28px}}
+@media(max-width:720px){
+ .ld-game[data-game=run] .start-screen{grid-template-columns:1fr}
+ .ld-game[data-game=run] .start-manifest{padding:16px 20px}
+ .ld-game[data-game=run] .family-roster{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;border:0}
+ .ld-game[data-game=run] .family-roster li{min-height:0;display:block;padding:10px;border:1px solid #514760}
+ .ld-game[data-game=run] .family-roster li>b{display:none}
+ .ld-game[data-game=run] .family-roster li small{font-size:13px;margin-top:5px}
+ .ld-game[data-game=run] .family-roster li span{font-size:17px}
+ .ld-game[data-game=run] .question-stage,.ld-game[data-game=run] .question-stage.media-layout{display:flex;flex-direction:column;padding:18px 14px;gap:0}
+ .ld-game[data-game=run] .question-head{order:0}
+ .ld-game[data-game=run] .timer-track{order:1;margin:12px 0 18px}
+ .ld-game[data-game=run] .question-copy{order:2;padding-bottom:14px}
+ .ld-game[data-game=run] .visual-panel{order:3;width:100%;min-height:200px;margin-bottom:14px}
+ .ld-game[data-game=run] .media-problem{order:4}
+ .ld-game[data-game=run] .answer-grid{order:5;grid-template-columns:1fr 1fr;gap:8px}
+ .ld-game[data-game=run] .feedback{order:6;display:flex;flex-direction:column;align-items:stretch;gap:14px}
+ .ld-game[data-game=run] .visual-panel #questionImage{height:210px}
+ .ld-game[data-game=run] .visual-panel.character-active #questionImage{height:280px}
+ .ld-game[data-game=run] .visual-panel.silhouette-active #questionImage{height:250px;filter:blur(13px)}
+ .ld-game[data-game=run] .visual-panel.silhouette-active.revealed #questionImage{filter:none}
+ .ld-game[data-game=run] .visual-panel.emblem-active #questionImage{height:210px}
+ .ld-game[data-game=run] .visual-panel.audio-active{min-height:200px;padding:18px 0}
+ .ld-game[data-game=run] .audio-console{gap:14px}
+ .ld-game[data-game=run] .audio-wave{height:40px}
+ .ld-game[data-game=run] .visual-panel.geo-active{min-height:0}
+ .ld-game[data-game=run] .geo-board{width:min(250px,100%)}
+ .ld-game[data-game=run] .question-head strong{font-size:20px}
+ .ld-game[data-game=run] .question-copy h2{font-size:29px}
+ .ld-game[data-game=run] .answer-grid button{font-size:18px;grid-template-columns:18px 1fr;gap:5px;box-shadow:2px 2px 0 #10101b}
+ .ld-game[data-game=run] .feedback button{width:100%}
+ .ld-game[data-game=run] .end-copy>.family-recap{grid-template-columns:1fr 1fr}
+}
+@media(max-width:370px){.ld-game[data-game=run] .answer-grid{grid-template-columns:1fr}}

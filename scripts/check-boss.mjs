@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {initial,choose,resolve,next,intent} from '../public/boss-engine.mjs';
+let s=initial();assert.equal(resolve(s,true),null);
+s=choose(s,'spell');assert.equal(choose(s,'attack'),s);
+let r=resolve(s,false);assert.equal(r.state.mp,40);assert.equal(r.incoming,30);assert.equal(r.state.boss,280);assert.equal(resolve(r.state,true),null);
+s=initial();for(const a of ['spell','spell','attack','spell','attack']){r=resolve(choose(s,a),true);s=r.state;if(!s.outcome)s=next(s);}assert.equal(s.outcome,'win');assert.ok(s.hp>0);assert.equal(r.incoming,0);
+s=initial();while(!s.outcome){s=resolve(choose(s,'attack'),false).state;if(!s.outcome)s=next(s);}assert.equal(s.outcome,'lose');assert.equal(s.hp,0);
+s={...initial(),turn:3};r=resolve(choose(s,'guard'),true);assert.equal(r.incoming,11);
+s={...initial(),mp:0};assert.equal(choose(s,'spell'),s);
+s={...initial(),hp:130};r=resolve(choose(s,'heal'),true);assert.equal(r.heal,10);assert.equal(r.state.mp,28);assert.equal(r.state.hp,120);
+assert.equal(intent({...initial(),boss:140}).fury,true);
+assert.ok(intent({...initial(),turn:16}).damage>intent(initial()).damage);
+console.log('Battle victory/defeat, mana, guard, heal, rage and duplicate actions: OK');

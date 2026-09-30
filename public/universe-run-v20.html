@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07090b" />
+    <meta name="description" content="Une Run complète de quinze épreuves dans l'univers Pokémon ou Dofus." />
+    <title>Universe Run — Lore Diff</title>
+    <script>if(new URLSearchParams(location.search).get("world")!=="dofus")location.replace("/play/pokemon");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./world-run.css?v=20" />
+  <link rel="stylesheet" href="/game-theme.css?v=40"></head>
+  <body data-world="pokemon" class="ld-game" data-game="world">
+    <div class="scanlines" aria-hidden="true"></div>
+    <main class="world-shell">
+      <header class="world-topbar">
+        <a href="./">← ACCUEIL</a>
+        <div class="world-brand"><i>LD</i><span id="brandName">KANTO <b>RUN</b></span></div>
+        <button id="restartButton" type="button">RECOMMENCER</button>
+      </header><div class="ld-game-switch"><a href="/home.html">LORE DIFF · TOUS LES JEUX</a><details><summary>Changer de jeu</summary><nav aria-label="Choisir un jeu"><a href="/rift-id.html">LoLidle</a><a href="/wow.html">WoWidle</a><a href="/pokemon.html">Pokéidle</a><a href="/sound.html">Intrus Check</a><a href="/screen.html">Screen Check</a><a href="/daily.html">Défi du jour</a><a href="/run.html">Azeroth Run</a><a href="/play/pokemon">Pokémon Run</a><a href="/play/runeterra">Runeterra Run</a><a href="/play/dofus">Krosmoz Run</a><a href="/multi?mode=mega">Multijoueur</a></nav></details></div>
+
+      <section class="world-start" id="startScreen">
+        <div class="start-copy">
+          <span class="overline" id="worldOverline">UNIVERS 02 // POKÉMON</span>
+          <h1><span id="worldTitle">KANTO</span><br /><em>RUN</em></h1>
+          <p id="worldIntro">Quinze formats, quinze questions et une route différente à chaque partie.</p>
+          <button class="launch" id="launchButton" type="button"><span>LANCER LE RUN</span><b>→</b></button>
+          <div class="start-stats"><span><b>15</b> ÉPREUVES</span><span><b id="poolCount">30</b> CIBLES</span><span><b>20 SEC</b> PAR QUESTION</span></div>
+        </div>
+        <div class="route-manifest">
+          <span>ROUTE DE LA PARTIE</span>
+          <ol id="manifestList"></ol>
+        </div>
+      </section>
+
+      <section class="world-game" id="gameScreen" hidden>
+        <aside class="route-rail">
+          <span>ROUTE DU RUN</span>
+          <ol id="routeRail"></ol>
+          <div><small>SCORE</small><strong id="scoreValue">0000</strong></div>
+          <div><small>COMBO</small><strong id="comboValue">×1</strong></div>
+        </aside>
+        <div class="question-stage">
+          <div class="question-head">
+            <div><span id="roundIndex">ÉPREUVE 01 / 15</span><strong id="roundType">IDENTITÉ</strong></div>
+            <div class="timer"><b id="timerValue">20</b><span>SEC</span></div>
+          </div>
+          <div class="timer-track"><i id="timerFill"></i></div>
+          <div class="visual-panel" id="visualPanel">
+            <img id="questionImage" alt="Sujet mystère" hidden />
+            <div class="visual-fallback" id="visualFallback"><small>ARCHIVE</small><b id="visualCode">ID</b></div>
+            <span class="visual-index" id="visualIndex">02-01</span>
+          </div>
+          <div class="question-copy"><span id="questionKicker">IDENTIFICATION</span><h2 id="questionText">Qui est ce personnage ?</h2></div>
+          <div class="answer-grid" id="answerGrid"></div>
+          <div class="feedback" id="feedback" hidden>
+            <div><span id="feedbackState">CORRECT</span><strong id="feedbackAnswer"></strong><p id="feedbackFact"></p></div>
+            <button id="nextButton" type="button">ÉPREUVE SUIVANTE →</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="world-end" id="endScreen" hidden>
+        <div class="rank"><span>RANG</span><b id="rankValue">A</b></div>
+        <div><span id="endOverline">RUN TERMINÉ</span><h2 id="endTitle">ARCHIVISTE<br />CONFIRMÉ</h2><p id="endSummary"></p><strong id="finalScore"></strong><div class="end-actions"><button class="launch" id="replayButton" type="button"><span>REJOUER</span><b>↻</b></button><a href="./">RETOUR AUX MODES</a></div></div>
+      </section>
+    </main>
+    <script src="./lorediff-world-run-v20.js" defer></script>
+  <script src="/arcade-fx.js"></script></body>
+</html>

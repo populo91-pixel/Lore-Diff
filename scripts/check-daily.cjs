@@ -1,0 +1,10 @@
+const ts=require('typescript'),fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+function load(file){const code=ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;const module={exports:{}};vm.runInNewContext(code,{module,exports:module.exports,require:p=>{if(p.includes('pokemon-trivia'))return load('app/quiz/pokemon-trivia.ts');throw Error(p)},Date,Intl,Math,Set,console});return module.exports}
+const {dailyQuestions,initialState,answerQuestion,dayKey,validDay}=load('lib/daily-game.ts');
+assert.equal(dayKey(new Date('2026-09-18T22:30:00Z')),'2026-09-19');assert.equal(dayKey(new Date('2026-01-01T23:30:00Z')),'2026-01-02');assert.equal(validDay('2026-02-31'),false);assert.equal(validDay('9999-01-01'),false);
+for(let d=1;d<=28;d++){const day=`2026-09-${String(d).padStart(2,'0')}`,q=dailyQuestions(day);assert.equal(q.length,9);assert.equal(JSON.stringify(q),JSON.stringify(dailyQuestions(day)));assert.equal(new Set(q.map(x=>x.prompt+'|'+x.signal)).size,9);q.forEach(x=>{assert.equal(new Set(x.options).size,4);assert.ok(x.options[x.correct]);assert.ok(x.fact)});assert.ok(q.slice(0,3).every(x=>x.signal));assert.ok(q.slice(3).every(x=>!x.signal));}
+const qs=dailyQuestions('2026-09-18');let s=initialState(1000);assert.equal(answerQuestion(s,qs[0],-1,1000),null);
+for(let i=0;i<9;i++){s.index=i;s.openedAt=1000;if(i===8){assert.equal(answerQuestion(s,qs[i],qs[i].correct,1000),null);s.bet=500}const next=answerQuestion(s,qs[i],qs[i].correct,1000);assert.ok(next);assert.equal(answerQuestion(next,qs[i],qs[i].correct,1000),null);s=next}assert.equal(s.score,13250);assert.equal(s.bestStreak,9);
+let loss={...initialState(1000),index:8,score:300,bet:300,answers:Array(8).fill({correct:false})};assert.equal(answerQuestion(loss,qs[8],(qs[8].correct+1)%4,1000).score,0);
+assert.equal(answerQuestion(initialState(0),qs[0],qs[0].correct,16000).answers[0].speed,0);
+console.log('Daily: seeded order, unique choices, Paris rollover, server scoring, duplicate lock, wager win/loss passed');

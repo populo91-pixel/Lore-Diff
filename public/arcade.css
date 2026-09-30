@@ -1,0 +1,144 @@
+:root {
+  --arcade-bg: #070707;
+  --arcade-paper: #f3f0e6;
+  --arcade-accent: #dfff00;
+  --arcade-alert: #ff304f;
+  --arcade-good: #5cffb0;
+  --arcade-line: rgba(243,240,230,.2);
+}
+
+body.arcade-page {
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+    var(--arcade-bg);
+  background-size: 32px 32px;
+  color: var(--arcade-paper);
+  font-family: "IBM Plex Mono", monospace;
+}
+body.arcade-page::after { content:""; position:fixed; inset:0; z-index:50; pointer-events:none; opacity:.14; background:repeating-linear-gradient(0deg,transparent 0 3px,#000 3px 4px); mix-blend-mode:multiply; }
+.arcade-page .ambient { display:none; }
+.arcade-page .app-shell { width:min(1360px,calc(100% - 48px)); }
+.arcade-page .topbar { height:82px; display:grid; grid-template-columns:1fr auto 1fr; border-color:var(--arcade-line); }
+.arcade-page .home-link { justify-self:start; color:#8e8e87; font-family:"IBM Plex Mono",monospace; font-size:.7rem; font-weight:700; letter-spacing:.1em; text-decoration:none; }
+.arcade-page .home-link:hover { color:var(--arcade-accent); }
+.arcade-page .brand { justify-self:center; font-family:"Barlow Condensed",sans-serif; font-size:1.45rem; font-weight:900; font-style:italic; letter-spacing:-.03em; }
+.arcade-page .brand b { color:var(--arcade-accent); }
+.arcade-page .brand-mark, .arcade-page .wow-brand-mark, .arcade-page .dofus-brand-mark { width:30px; height:30px; border:0; border-radius:0; display:grid; place-items:center; background:var(--arcade-accent); color:#090909; font-family:"Barlow Condensed",sans-serif; font-size:.9rem; font-style:normal; font-weight:900; transform:skew(-7deg); }
+.arcade-page .brand-mark::before, .arcade-page .brand-mark span, .arcade-page .dofus-brand-mark i { display:none; }
+.arcade-page .top-actions { justify-self:end; }
+.arcade-page .streak-pill, .arcade-page .icon-button { border:1px solid var(--arcade-line); border-radius:0; background:#0b0b0b; }
+.arcade-page .streak-pill { height:40px; color:#888881; font-size:.7rem; letter-spacing:.06em; }
+.arcade-page .streak-pill b { color:var(--arcade-paper); }
+.arcade-page .icon-button { width:44px; height:40px; color:#0a0a0a; background:var(--arcade-accent); }
+.arcade-page .icon-button:hover { border-color:var(--arcade-accent); background:var(--arcade-paper); transform:none; }
+
+.arcade-page .game-panel { min-height:540px; grid-template-columns:minmax(0,1.1fr) minmax(260px,.56fr); align-items:stretch; gap:0; margin-top:28px; padding:0; border:1px solid var(--arcade-line); border-radius:0; background:#090909; box-shadow:10px 10px 0 rgba(255,255,255,.035); overflow:visible; }
+.arcade-page .game-panel::before { inset:0; opacity:.16; background:linear-gradient(115deg,transparent 0 68%,var(--arcade-accent) 68% 68.5%,transparent 68.5%); mask-image:none; }
+.arcade-page .challenge-bar { position:relative; z-index:8; grid-column:1/-1; min-height:58px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:9px 12px 9px 20px; border-bottom:1px solid var(--arcade-line); background:#050505; }
+.arcade-page .difficulty-switch, .arcade-page .challenge-readout { display:flex; align-items:center; gap:8px; }
+.arcade-page .difficulty-switch > span { margin-right:7px; color:#74746e; font-size:.75rem; font-weight:700; letter-spacing:.12em; }
+.arcade-page .difficulty-button { min-height:36px; padding:0 13px; border:1px solid var(--arcade-line); border-radius:0; background:#0c0c0c; color:#898981; font-family:"IBM Plex Mono",monospace; font-size:.75rem; font-weight:700; letter-spacing:.07em; cursor:pointer; }
+.arcade-page .difficulty-button:hover { color:var(--arcade-paper); border-color:var(--arcade-paper); }
+.arcade-page .difficulty-button.active { border-color:var(--arcade-accent); background:var(--arcade-accent); color:#080808; box-shadow:3px 3px 0 rgba(223,255,0,.12); }
+.arcade-page .challenge-readout { gap:0; font-family:"IBM Plex Mono",monospace; font-size:.75rem; font-weight:700; letter-spacing:.07em; }
+.arcade-page .challenge-readout span { padding:10px 13px; border:1px solid var(--arcade-line); color:var(--arcade-paper); }
+.arcade-page .challenge-readout b { padding:10px 13px; background:var(--arcade-alert); color:#fff; font-size:inherit; }
+.arcade-page.nightmare-mode .suggestion img,
+.arcade-page.nightmare-mode .suggestion small,
+.arcade-page.nightmare-mode .suggestion [class$="-suggestion-mark"] { display:none; }
+.arcade-page.nightmare-mode .suggestion { grid-template-columns:1fr; min-height:44px; }
+.arcade-page .intro-copy { min-height:360px; display:flex; flex-direction:column; justify-content:center; padding:58px 68px 34px; border-right:1px solid var(--arcade-line); }
+.arcade-page .eyebrow, .arcade-page .section-kicker { color:var(--arcade-accent); font-family:"IBM Plex Mono",monospace; font-size:.65rem; letter-spacing:.16em; }
+.arcade-page .eyebrow span { width:20px; background:var(--arcade-accent); }
+.arcade-page h1 { margin:22px 0 20px; font-family:"Barlow Condensed",sans-serif; font-size:clamp(4rem,7.3vw,7.4rem); font-style:italic; font-weight:900; line-height:.75; letter-spacing:-.055em; text-transform:uppercase; }
+.arcade-page h1 em { color:transparent; -webkit-text-stroke:1.5px var(--arcade-accent); }
+.arcade-page .intro-copy > p { max-width:600px; color:#92928a; font-family:"IBM Plex Mono",monospace; font-size:.78rem; line-height:1.65; }
+.arcade-page .mystery-card { position:relative; align-self:stretch; justify-self:stretch; width:auto; aspect-ratio:auto; border:0; border-radius:0; background:linear-gradient(135deg,rgba(255,255,255,.02),rgba(223,255,0,.045)); box-shadow:none; }
+.arcade-page .mystery-card::before { content:"TARGET_LOCKED"; position:absolute; top:22px; left:24px; color:#7c7c75; font-size:.58rem; font-weight:700; letter-spacing:.15em; }
+.arcade-page .mystery-card::after { content:"// 01"; position:absolute; top:20px; right:24px; color:var(--arcade-accent); font-family:"Barlow Condensed",sans-serif; font-size:1.2rem; font-weight:900; }
+.arcade-page .mystery-symbol { color:var(--arcade-accent); font-family:"Barlow Condensed",sans-serif; font-size:12rem; font-style:italic; text-shadow:10px 10px 0 rgba(223,255,0,.08); }
+.arcade-page .mystery-label { bottom:28px; color:#888881; font-family:"IBM Plex Mono",monospace; font-size:.6rem; }
+.arcade-page .mystery-orbit, .arcade-page .wow-rune, .arcade-page .dofus-egg-ring { border-radius:0; }
+.arcade-page .guess-form { grid-column:1/-1; width:100%; margin:0; padding:30px 34px 24px; border-top:1px solid var(--arcade-line); background:#050505; }
+.arcade-page .guess-form > label { margin-bottom:10px; color:var(--arcade-paper); font-family:"IBM Plex Mono",monospace; font-size:.65rem; letter-spacing:.11em; text-transform:uppercase; }
+.arcade-page .search-wrap input { height:66px; padding-right:185px; border:1px solid var(--arcade-line); border-radius:0; background:#0d0d0d; color:var(--arcade-paper); font-family:"Barlow Condensed",sans-serif; font-size:1.45rem; font-weight:600; letter-spacing:.02em; }
+.arcade-page .search-wrap input:focus { border-color:var(--arcade-accent); box-shadow:4px 4px 0 rgba(223,255,0,.14); }
+.arcade-page .submit-button { top:7px; right:7px; min-width:158px; height:52px; border-radius:0; background:var(--arcade-accent); color:#080808; font-family:"IBM Plex Mono",monospace; font-size:.7rem; box-shadow:none; clip-path:polygon(8px 0,100% 0,100% 100%,0 100%,0 8px); }
+.arcade-page .form-meta { color:#777770; font-size:.65rem; }
+.arcade-page .form-meta i { border-radius:0; background:var(--arcade-accent); box-shadow:0 0 12px var(--arcade-accent); }
+.arcade-page .suggestions { border-radius:0; background:#080808; }
+.arcade-page .suggestion { border-radius:0; }
+
+.arcade-page .result-card { grid-template-columns:260px 1fr; margin-top:28px; border:2px solid var(--arcade-good); border-radius:0; background:#080d0a; box-shadow:10px 10px 0 rgba(92,255,176,.12); }
+.arcade-page .result-card::after { font-family:"Barlow Condensed",sans-serif; font-style:italic; }
+.arcade-page .result-card.lost { border-color:var(--arcade-alert); background:#110709; box-shadow:10px 10px 0 rgba(255,48,79,.12); }
+.arcade-page .result-card.lost::after { content:"DÉFAITE"; color:rgba(255,48,79,.07); }
+.arcade-page .result-card.lost .eyebrow.win { color:var(--arcade-alert); }
+.arcade-page .result-card.lost .eyebrow.win span { background:var(--arcade-alert); }
+.arcade-page .result-copy h2, .arcade-page .section-heading h2 { font-family:"Barlow Condensed",sans-serif; font-weight:900; font-style:italic; text-transform:uppercase; }
+.arcade-page .primary-button, .arcade-page .ghost-button { border-radius:0; font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.06em; }
+
+.arcade-page .attempts-section { margin:54px 0 80px; }
+.arcade-page .section-heading { align-items:center; margin-bottom:14px; padding-bottom:14px; border-bottom:5px solid var(--arcade-paper); }
+.arcade-page .section-heading h2 { margin:0; font-size:3rem; letter-spacing:-.03em; }
+.arcade-page .section-kicker { display:none; }
+.arcade-page .legend { font-family:"IBM Plex Mono",monospace; font-size:.62rem; }
+.arcade-page .legend i { border-radius:0; }
+.arcade-page .attempts-table { border:0; border-radius:0; overflow:visible; background:transparent; box-shadow:none; }
+.arcade-page .table-head { min-height:38px; border:1px solid var(--arcade-line); background:#111; color:#888881; font-family:"IBM Plex Mono",monospace; font-size:.58rem; letter-spacing:.11em; }
+.arcade-page .attempt-row { min-height:96px; margin-top:9px; border:1px solid var(--arcade-line); background:#0b0b0b; box-shadow:5px 5px 0 rgba(255,255,255,.025); }
+.arcade-page .attempt-row > div { border-color:var(--arcade-line); }
+.arcade-page .pokemon-cell strong { font-family:"Barlow Condensed",sans-serif; font-size:1.1rem; font-weight:800; text-transform:uppercase; }
+.arcade-page .status-cell.good { background:var(--arcade-good); color:#06130c; }
+.arcade-page .status-cell.good::before { background:#06130c; box-shadow:none; }
+.arcade-page .status-cell.bad { background:rgba(255,48,79,.075); }
+.arcade-page .measure b { color:var(--arcade-accent); font-family:"Barlow Condensed",sans-serif; }
+.arcade-page .type-chip { border-radius:0; }
+.arcade-page .empty-state { min-height:210px; border:1px dashed var(--arcade-line); background:repeating-linear-gradient(-45deg,transparent 0 10px,rgba(255,255,255,.012) 10px 20px); }
+.arcade-page .empty-state h3 { font-family:"Barlow Condensed",sans-serif; font-size:1.45rem; font-style:italic; text-transform:uppercase; }
+.arcade-page footer { border-color:var(--arcade-line); color:#64645f; font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.08em; }
+
+.wow-page { --arcade-accent:#ff3b30; }
+.dofus-page { --arcade-accent:#52f7c5; }
+.arcade-page .wow-brand-mark, .arcade-page .dofus-brand-mark { background:var(--arcade-accent); }
+
+@media (max-width:850px) {
+  .arcade-page .app-shell { width:min(100% - 28px,760px); }
+  .arcade-page .game-panel { grid-template-columns:1fr 210px; }
+  .arcade-page .intro-copy { min-height:340px; padding:46px 42px 32px; }
+  .arcade-page .mystery-card { position:relative; top:auto; right:auto; width:auto; opacity:1; }
+  .arcade-page .mystery-symbol { font-size:8rem; }
+  .arcade-page .intro-copy { padding-right:42px; }
+  .arcade-page .attempt-row { border-radius:0; }
+}
+@media (max-width:600px) {
+  .arcade-page .app-shell { width:min(100% - 18px,520px); }
+  .arcade-page .topbar { height:68px; grid-template-columns:auto 1fr auto; gap:12px; }
+  .arcade-page .home-link { font-size:0; }
+  .arcade-page .home-link::before { content:"←"; font-size:1.3rem; color:var(--arcade-accent); }
+  .arcade-page .brand { justify-self:start; font-size:1.15rem; }
+  .arcade-page .brand > span:last-child { display:inline; }
+  .arcade-page .streak-pill { display:none; }
+  .arcade-page .game-panel { grid-template-columns:1fr; min-height:0; margin-top:14px; }
+  .arcade-page .challenge-bar { align-items:stretch; flex-direction:column; padding:12px; }
+  .arcade-page .difficulty-switch { display:grid; grid-template-columns:repeat(3,1fr); }
+  .arcade-page .difficulty-switch > span { grid-column:1/-1; }
+  .arcade-page .difficulty-button { padding:0 7px; }
+  .arcade-page .challenge-readout { display:grid; grid-template-columns:1fr auto; }
+  .arcade-page .challenge-readout span, .arcade-page .challenge-readout b { display:flex; align-items:center; padding:9px; font-size:.72rem; }
+  .arcade-page .intro-copy { min-height:310px; padding:38px 24px 26px; border-right:0; }
+  .arcade-page h1 { font-size:clamp(4.3rem,20vw,6.3rem); }
+  .arcade-page .intro-copy > p { width:90%; }
+  .arcade-page .mystery-card { position:absolute; z-index:1; top:18px; right:-25px; width:145px; height:275px; opacity:.32; border-left:1px solid var(--arcade-line); }
+  .arcade-page .mystery-symbol { font-size:7rem; }
+  .arcade-page .mystery-label, .arcade-page .mystery-card::before, .arcade-page .mystery-card::after { display:none; }
+  .arcade-page .guess-form { padding:24px 16px 18px; }
+  .arcade-page .search-wrap input { height:62px; padding-left:45px; padding-right:68px; font-size:1.2rem; }
+  .arcade-page .submit-button { width:52px; min-width:52px; }
+  .arcade-page .submit-button span { display:none; }
+  .arcade-page .section-heading { align-items:flex-start; }
+  .arcade-page .section-heading h2 { font-size:2.45rem; }
+  .arcade-page .legend { justify-content:flex-start; }
+  .arcade-page .result-card { grid-template-columns:1fr; padding:24px; }
+}

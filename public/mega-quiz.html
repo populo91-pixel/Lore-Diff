@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0710" />
+    <meta name="description" content="Le tournoi Lore Diff : cinq manches de quiz sur Warcraft, Pokémon et Dofus." />
+    <title>Méga Quiz — Lore Diff</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./mega-quiz.css?v=19" />
+  <link rel="stylesheet" href="/game-theme.css?v=40"></head>
+  <body class="ld-game" data-game="mega">
+    <div class="tournament-noise" aria-hidden="true"></div>
+    <main class="tournament-shell">
+      <header class="tournament-topbar">
+        <a href="./">← ACCUEIL</a>
+        <div class="tournament-brand"><i>LD</i><span>MÉGA <b>QUIZ</b></span></div>
+        <button id="restartTournament" type="button">RECOMMENCER</button>
+      </header><div class="ld-game-switch"><a href="/home.html">LORE DIFF · TOUS LES JEUX</a><details><summary>Changer de jeu</summary><nav aria-label="Choisir un jeu"><a href="/rift-id.html">LoLidle</a><a href="/wow.html">WoWidle</a><a href="/pokemon.html">Pokéidle</a><a href="/sound.html">Intrus Check</a><a href="/screen.html">Screen Check</a><a href="/daily.html">Défi du jour</a><a href="/run.html">Azeroth Run</a><a href="/play/pokemon">Pokémon Run</a><a href="/play/runeterra">Runeterra Run</a><a href="/play/dofus">Krosmoz Run</a><a href="/multi?mode=mega" aria-current="page">Multijoueur</a></nav></details></div>
+
+      <section class="tournament-start" id="startScreen">
+        <div class="start-copy">
+          <span class="eyebrow">TOURNOI MULTI-UNIVERS // 2–8 JOUEURS</span>
+          <h1>MÉGA<br /><em>QUIZ</em></h1>
+          <p>Crée un salon, partage le code et affronte tes potes sur vingt questions Warcraft, Pokémon et Dofus.</p>
+          <a class="tournament-button" id="startTournament" href="/multi?mode=mega" style="text-decoration:none"><span>ENTRER DANS L’ARÈNE</span><b>→</b></a>
+          <div class="start-metrics"><span><b>05</b> MANCHES</span><span><b>20</b> QUESTIONS</span><span><b>03</b> UNIVERS</span></div>
+        </div>
+        <div class="round-list">
+          <span>FORMAT DU TOURNOI</span>
+          <ol id="startRoundList"></ol>
+        </div>
+      </section>
+
+      <section class="round-intro" id="roundIntro" hidden>
+        <span id="introIndex">MANCHE 01 / 05</span>
+        <h2 id="introTitle">FLASH MIX</h2>
+        <p id="introDescription"></p>
+        <button class="tournament-button" id="startRound" type="button"><span>COMMENCER LA MANCHE</span><b>→</b></button>
+      </section>
+
+      <section class="tournament-game" id="gameScreen" hidden>
+        <aside class="scoreboard">
+          <span>TABLEAU DU TOURNOI</span>
+          <ol id="roundRail"></ol>
+          <div class="score-box"><small>SCORE TOTAL</small><strong id="scoreValue">00000</strong></div>
+          <div class="universe-box"><small>UNIVERS</small><strong id="universeValue">WOW</strong></div>
+        </aside>
+        <div class="question-stage">
+          <div class="question-head">
+            <div><span id="questionIndex">QUESTION 01 / 20</span><strong id="roundName">FLASH MIX</strong></div>
+            <div class="timer"><b id="timerValue">18</b><span>SEC</span></div>
+          </div>
+          <div class="timer-track"><i id="timerFill"></i></div>
+          <div class="media-panel" id="mediaPanel">
+            <img id="questionImage" alt="Visuel de la question" hidden />
+            <div class="media-code" id="mediaCode"><small>TOURNAMENT FEED</small><b>MQ</b></div>
+            <div class="universe-stamp" id="universeStamp">WARCRAFT</div>
+          </div>
+          <div class="question-copy"><span id="questionKicker">MIXED KNOWLEDGE</span><h2 id="questionText"></h2></div>
+          <div class="answer-grid" id="answerGrid"></div>
+          <div class="feedback" id="feedback" hidden><div><span id="feedbackState">CORRECT</span><strong id="feedbackAnswer"></strong><p id="feedbackFact"></p></div><button id="nextQuestion" type="button">QUESTION SUIVANTE →</button></div>
+        </div>
+      </section>
+
+      <section class="tournament-end" id="endScreen" hidden>
+        <div class="trophy"><span>RANG</span><b id="rankValue">A</b></div>
+        <div><span>TOURNOI TERMINÉ // SCORE HOMOLOGUÉ</span><h2 id="endTitle">LORE<br />MASTER</h2><p id="endSummary"></p><strong id="finalScore"></strong><div class="end-actions"><button class="tournament-button" id="replayTournament" type="button"><span>REJOUER</span><b>↻</b></button><a href="./">RETOUR AUX MODES</a></div></div>
+      </section>
+    </main>
+    <script src="./lorediff-mega-quiz-v20.js" defer></script>
+  <script src="/arcade-fx.js"></script></body>
+</html>

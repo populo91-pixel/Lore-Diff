@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050505" />
+    <meta name="description" content="Screen Check : reconnais cinq jeux vidéo à partir d’images progressivement révélées." />
+    <title>Screen Check — Lore Diff</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./arcade.css" />
+    <link rel="stylesheet" href="./media-game.css" />
+  <link rel="stylesheet" href="/game-theme.css?v=40"></head>
+  <body class="arcade-page media-page screen-page ld-game" data-game="screen">
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="home-link" href="./">← ACCUEIL</a>
+        <a class="brand" href="./screen.html"><span class="brand-mark">SC</span><span>SCREEN<b>//CHECK</b></span></a>
+        <div class="top-actions"><button class="icon-button" id="newRunButton" type="button" aria-label="Nouvelle série" title="Nouvelle série">↻</button></div>
+      </header><div class="ld-game-switch"><a href="/home.html">LORE DIFF · TOUS LES JEUX</a><details><summary>Changer de jeu</summary><nav aria-label="Choisir un jeu"><a href="/rift-id.html">LoLidle</a><a href="/wow.html">WoWidle</a><a href="/pokemon.html">Pokéidle</a><a href="/sound.html">Intrus Check</a><a href="/screen.html" aria-current="page">Screen Check</a><a href="/daily.html">Défi du jour</a><a href="/run.html">Azeroth Run</a><a href="/play/pokemon">Pokémon Run</a><a href="/play/runeterra">Runeterra Run</a><a href="/play/dofus">Krosmoz Run</a><a href="/multi?mode=mega">Multijoueur</a></nav></details></div>
+
+      <section class="media-shell">
+        <div class="media-control">
+          <p class="media-kicker">MACHINE 05 // VISUAL ID</p>
+          <h1>SCREEN<br /><em>CHECK</em></h1>
+          <p class="media-intro">Reconnais le jeu caché derrière l’image. Plus tu réponds tôt, plus tu marques.</p>
+          <div class="screen-rules" aria-label="Comment jouer">
+            <span><b>1</b> Observe l’image</span>
+            <span><b>2</b> Écris puis choisis le jeu</span>
+            <span><b>3</b> Trouve-le en 3 erreurs max</span>
+          </div>
+          <div class="run-stats">
+            <div class="run-stat"><span>MANCHE</span><b id="roundCount">1 / 5</b></div>
+            <div class="run-stat"><span>SCORE</span><b id="scoreCount">0000</b></div>
+            <div class="run-stat"><span>ERREURS</span><b id="mistakeCount">0</b></div>
+          </div>
+          <form class="media-form" id="screenForm" autocomplete="off">
+            <label for="screenInput">QUEL EST CE JEU ?</label>
+            <div class="media-search">
+              <input id="screenInput" type="text" placeholder="Entre un titre…" spellcheck="false" aria-autocomplete="list" aria-controls="screenSuggestions" aria-expanded="false" />
+              <button id="screenSubmit" type="submit">VALIDER</button>
+              <div class="media-suggestions" id="screenSuggestions" role="listbox" hidden></div>
+            </div>
+            <small class="media-help">Commence à écrire : la liste des jeux apparaît sous le champ.</small>
+            <p class="media-message" id="screenMessage" role="status" aria-live="polite"></p>
+          </form>
+          <div class="media-tools">
+            <button class="reveal-button" id="screenHint" type="button">INDICE · IMAGE + NETTE</button>
+            <div class="level-meter" id="screenMeter" aria-label="Niveau de révélation"><i class="on"></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+
+        <div class="media-viewport">
+          <div class="screen-frame level-0" id="screenFrame"><img id="screenImage" src="" alt="Image mystère" /></div>
+          <span class="viewport-label" id="screenClarity">IMAGE 1/4 · BROUILLÉE</span>
+          <span class="viewport-code" id="screenCode">01</span>
+          <div class="round-result" id="screenResult" hidden>
+            <img id="screenResultImage" src="" alt="" />
+            <div><span id="screenResultLabel">IDENTIFIÉ</span><h2 id="screenResultTitle"></h2></div>
+            <button class="next-button" id="screenNext" type="button">SUIVANT</button>
+          </div>
+          <div class="run-complete" id="screenComplete" hidden>
+            <div><h2>SÉRIE<br />TERMINÉE</h2><strong id="screenFinalScore"></strong><button class="next-button" id="screenRestart" type="button">REJOUER</button></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="./media-data.js" defer></script>
+    <script src="./screen.js" defer></script>
+  <script src="/arcade-fx.js"></script></body>
+</html>

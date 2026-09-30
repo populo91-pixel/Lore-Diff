@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090b08" />
+    <meta name="description" content="Azeroth Run : Douze épreuves pour reconnaître, explorer, déduire et écouter Azeroth." />
+    <title>Azeroth Run — Lore Diff</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M10 50L32 8l22 42H10z' fill='%23dfff00'/%3E%3Cpath d='M25 42l7-20 7 20' fill='none' stroke='%23090b08' stroke-width='5'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./run.css" />
+  <link rel="stylesheet" href="/game-theme.css?v=40">
+  <link rel="stylesheet" href="/azeroth-run.css?v=74"></head>
+  <body class="ld-game" data-game="run">
+    <div class="noise" aria-hidden="true"></div>
+    <main class="run-shell">
+      <header class="run-topbar">
+        <a href="./">← ACCUEIL</a>
+        <div class="run-brand"><i>LD</i><span>AZEROTH <b>RUN</b></span></div>
+        <button id="quitRun" type="button">RECOMMENCER</button>
+      </header><div class="ld-game-switch"><a href="/home.html">LORE DIFF · TOUS LES JEUX</a><details><summary>Changer de jeu</summary><nav aria-label="Choisir un jeu"><a href="/rift-id.html">LoLidle</a><a href="/wow.html">WoWidle</a><a href="/pokemon.html">Pokéidle</a><a href="/sound.html">Intrus Check</a><a href="/screen.html">Screen Check</a><a href="/daily.html">Défi du jour</a><a href="/run.html" aria-current="page">Azeroth Run</a><a href="/play/pokemon">Pokémon Run</a><a href="/play/runeterra">Runeterra Run</a><a href="/play/dofus">Krosmoz Run</a><a href="/multi?mode=mega">Multijoueur</a></nav></details></div>
+
+      <section class="start-screen" id="startScreen">
+        <div class="start-main">
+          <span class="overline">UNIVERS 01 // WORLD OF WARCRAFT</span>
+          <h1>CONNAIS-TU<br /><em>AZEROTH ?</em></h1>
+          <p>Place une zone sur la carte, reconnais une voix, démasque un intrus. Douze épreuves, trois étapes : le défi monte au fil du voyage.</p>
+          <nav class="run-difficulties" aria-label="Choisir la difficulté">
+            <button type="button" data-run-difficulty="easy"><b>FACILE</b><span>28 → 24 sec</span></button>
+            <button class="selected" type="button" data-run-difficulty="normal"><b>NORMAL</b><span>24 → 20 sec</span></button>
+            <button type="button" data-run-difficulty="expert"><b>EXPERT</b><span>20 → 16 sec</span></button>
+          </nav>
+          <div class="start-actions">
+            <button class="launch-button" id="startRun" type="button"><small id="soloDifficulty">MODE SOLO · NORMAL</small><span>LANCER LE RUN</span><b>→</b></button>
+            <a class="multi-button" href="/multi?mode=wow"><small>2–8 JOUEURS</small><span>JOUER EN MULTI</span><b>↗</b></a>
+          </div>
+          <div class="run-stats" aria-label="Rejouabilité du run">
+            <span><b id="questionBankCount">190+</b> QUESTIONS ACTIVES</span>
+            <span><b id="variantCount">≈10</b> QUESTIONS / FORMAT</span>
+            <span><b>12 ÉPREUVES</b> · FORMATS EN ROTATION</span>
+          </div>
+        </div>
+        <div class="start-manifest">
+          <span class="manifest-title">QUATRE FAÇONS DE JOUER</span>
+          <ol class="family-roster">
+            <li><b>01</b><span>RECONNAÎTRE<small>Personnages, créatures, emblèmes.</small></span></li>
+            <li><b>02</b><span>EXPLORER<small>Place une zone. Retrouve un lieu.</small></span></li>
+            <li><b>03</b><span>DÉDUIRE<small>Relie les indices. Trouve l’erreur.</small></span></li>
+            <li><b>04</b><span>ÉCOUTER<small>Une voix, un thème : à toi de jouer.</small></span></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="quiz-screen" id="quizScreen" hidden>
+        <aside class="run-rail">
+          <span class="rail-label">ROUTE DU RUN</span>
+          <ol id="progressRail"></ol>
+          <div class="score-block"><small>SCORE</small><strong id="scoreValue">0000</strong></div>
+          <div class="combo-block"><small>SÉRIE</small><strong id="comboValue">×1</strong></div>
+        </aside>
+
+        <div class="question-stage" id="questionStage">
+          <div class="question-head">
+            <div><span id="roundIndex">ÉPREUVE 01 / 12</span><strong id="roundType">PERSONNAGE</strong></div>
+            <div class="timer"><b id="timerValue">20</b><span>SEC</span></div>
+          </div>
+          <div class="timer-track"><i id="timerFill"></i></div>
+
+          <div class="visual-panel" id="visualPanel">
+            <img id="questionImage" src="" alt="Image mystère" hidden />
+            <div class="text-visual" id="textVisual"><span>ARCHIVE</span><b>?</b></div>
+            <div class="subject-tag" id="subjectTag" hidden><span>DOSSIER PERSONNAGE</span><b id="subjectName"></b></div>
+            <div class="audio-console" id="audioConsole" hidden>
+              <div class="audio-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <button id="playAudio" type="button">▶ ÉCOUTER LE SIGNAL</button>
+              <span id="audioLabel">RÉPLIQUES EN VERSION ORIGINALE</span>
+              <audio id="audioSource" preload="auto"></audio>
+            </div>
+            <div class="geo-board" id="geoBoard" tabindex="0" aria-label="Carte vierge des Royaumes de l’Est" hidden>
+              <img class="geo-map-image" src="./assets/eastern-kingdoms-map.webp" alt="Carte vierge complète des Royaumes de l’Est" draggable="false" />
+              <span class="geo-instruction">CLIQUE POUR PLACER TON MARQUEUR</span>
+              <i class="geo-line" id="geoLine" hidden></i>
+              <i class="geo-marker guess" id="geoGuess" aria-hidden="true" hidden></i>
+              <i class="geo-marker target" id="geoTarget" aria-hidden="true" hidden></i>
+            </div>
+            <button class="geo-confirm" id="geoConfirm" type="button" hidden>VALIDER CE POINT</button>
+            <span class="visual-code" id="visualCode">A-01</span>
+          </div>
+
+          <div id="mediaProblem" class="media-problem" hidden role="status"><p id="mediaProblemText"></p><button id="retryMedia" type="button">Réessayer</button><button id="skipMedia" type="button">Passer sans pénalité</button></div>
+          <div class="question-copy">
+            <span id="questionKicker">IDENTIFICATION VISUELLE</span>
+            <h2 id="questionText" tabindex="-1">Qui est ce personnage ?</h2>
+          </div>
+          <div class="answer-grid" id="answerGrid"></div>
+          <div class="feedback" id="feedback" role="status" aria-live="polite" hidden>
+            <div><span id="feedbackLabel">CORRECT</span><strong id="feedbackAnswer"></strong><p id="feedbackFact"></p><a id="sourceLink" href="#" target="_blank" rel="noreferrer" hidden>VOIR LA SOURCE ↗</a></div>
+            <button id="nextQuestion" type="button">ÉPREUVE SUIVANTE →</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="end-screen" id="endScreen" hidden>
+        <div class="rank-mark"><span>RANG</span><b id="rankValue">A</b></div>
+        <div class="end-copy">
+          <span>RUN TERMINÉ // AZEROTH</span>
+          <h2 id="endTitle">ARCHIVISTE<br />CONFIRMÉ</h2>
+          <p id="endSummary"></p>
+          <div id="familyRecap" class="family-recap"></div>
+          <strong id="finalScore">0000 POINTS</strong>
+          <div><button class="launch-button" id="replayRun" type="button"><span>REJOUER</span><b>↻</b></button><a href="./">RETOUR AUX MODES</a></div>
+        </div>
+      </section>
+    </main>
+    <script src="./run-extra.js" defer></script>
+    <script src="/run-variety.js?v=72" defer></script>
+    <script src="/azeroth-run-engine.js?v=74" defer></script>
+    <script src="./run.js?v=74" defer></script>
+  <script src="/arcade-fx.js"></script></body>
+</html>

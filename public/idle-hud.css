@@ -1,0 +1,62 @@
+/* Shared Idle controls: one visual system, universe-specific accent. */
+body.idle-unified{--idle-border:#746181;--idle-surface:#211b30;--idle-field:#191426}
+body.idle-unified[data-game=street]{--ld-accent:#ffb77b;--gold:var(--ld-accent);--hot:var(--ld-accent)}
+.idle-unified :is(.app-shell,main){max-width:1360px}
+.idle-unified :is(.rv-tabs,.modes,.tabs){display:flex;flex-wrap:wrap;gap:8px;border:0;background:transparent;margin:20px 0 28px;padding:0}
+.idle-unified :is(.rv-tabs,.modes,.tabs)>button{flex:0 1 auto;min-height:52px;margin:0;padding:12px 20px;border:1px solid var(--idle-border);border-radius:8px;background:var(--idle-surface);color:var(--ld-paper);box-shadow:none;font:700 18px/1.25 'Barlow Condensed',sans-serif;text-transform:none}
+.idle-unified :is(.rv-tabs,.modes,.tabs)>button:is([aria-pressed=true],[aria-selected=true],.active){background:var(--ld-accent);border-color:var(--ld-accent);color:#171528;box-shadow:none}
+.idle-unified .modes>button>span{font-size:18px}.idle-unified .modes>button>b,.idle-unified .modes>button>small{display:none}
+.idle-unified :is(.challenge-bar,.hud){display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--idle-surface);border-bottom:1px solid var(--idle-border);min-height:62px;padding:12px 20px}
+.idle-unified :is(.challenge-readout){display:flex;align-items:stretch;flex-wrap:wrap;gap:0}
+.idle-unified .challenge-readout>span,.idle-unified .challenge-readout>b{display:flex;align-items:center;min-height:40px;padding:10px 13px;font:700 14px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.05em;border:1px solid var(--idle-border)}
+.idle-unified .challenge-readout>b{background:#fa315d;color:#fff;border-color:#fa315d;text-transform:uppercase}
+.idle-unified :is(input[type=search],.search-wrap input,.rv-input-row input){min-height:52px;border-radius:2px;background:var(--idle-field);color:var(--ld-paper);font-size:18px}
+.idle-unified :is(.submit-button,.rv-input-row button,#guessForm>.primary){min-height:48px;border:2px solid #090911;border-radius:2px;background:var(--ld-accent);color:#171528;font:900 20px 'Barlow Condensed',sans-serif}
+.idle-unified :is(.rv-top,.it-header){border-color:var(--idle-border)}
+.idle-unified :is(button,a,input):focus-visible{outline:3px solid var(--ld-accent);outline-offset:3px}
+/* Streetidle now uses the same header, status strip, illustrated brief and answer form. */
+.street-idle-page.idle-unified{background:radial-gradient(ellipse at 85% 0,#403064 0,transparent 65%),#171528}
+.street-idle-page.idle-unified main{width:min(100% - 48px,1360px);padding:0 0 40px}
+.street-idle-page.idle-unified .topbar{max-width:none;padding:18px 0;min-height:74px;border-bottom:1px solid #514760}
+.street-idle-page.idle-unified .brand{font:900 24px/1 'Barlow Condensed',sans-serif;transform:none}.street-idle-page.idle-unified .brand em{display:inline;color:var(--ld-accent)}
+.street-idle-page.idle-unified .ld-game-switch nav{display:grid;gap:0}
+.street-idle-page.idle-unified .cabinet{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);background:#262137;overflow:visible;border:2px solid #090911;border-radius:3px;box-shadow:6px 7px 0 #090911;padding-top:24px}
+.street-idle-page.idle-unified .hud{grid-column:1/-1;border-bottom-width:1px}.street-idle-page.idle-unified .hud .session-label{color:#d1c7e0;font-size:14px;letter-spacing:.06em}.session-label b{color:var(--ld-accent)}
+.street-idle-page.idle-unified .stage-heading{position:relative;isolation:isolate;overflow:hidden;min-height:260px;padding:28px 32px;background:#30274a;border-left:5px solid var(--ld-accent);display:flex;flex-direction:column;justify-content:center;gap:20px}
+.street-idle-page.idle-unified .stage-heading:before{content:'';position:absolute;inset:0;z-index:-1;opacity:.3;background:linear-gradient(90deg,#30274a 25%,#30274a88),url('/assets/street/cover-idle.jpg') center/cover}
+.street-idle-page.idle-unified .stage-heading h2{font:900 clamp(36px,4.5vw,62px)/1.02 'Barlow Condensed',sans-serif;letter-spacing:-.025em;text-transform:uppercase;max-width:650px;color:var(--ld-paper)}
+.street-idle-page.idle-unified .stage-heading p{font-size:18px;margin:0;color:#e2d9ee;max-width:540px}
+.street-idle-page.idle-unified .idle-stage{min-width:0;height:100%;min-height:260px;gap:0;border:0;border-left:1px solid #514760;background:#211b30}
+.street-idle-page.idle-unified .classic .dossier{display:none}.street-idle-page.idle-unified .unknown{font:900 160px/1 'Barlow Condensed',sans-serif;transform:none;color:var(--ld-accent);text-shadow:7px 7px #ffffff12;border:1px solid #514760;width:80%;text-align:center;padding:8px}
+.street-idle-page.idle-unified .search{grid-column:1/-1;background:#09090d;padding:28px 32px 24px;border-top:1px solid #514760;margin-top:24px;min-width:0}
+.street-idle-page.idle-unified .search label{display:block;margin-bottom:10px;font-size:14px;color:var(--ld-paper)}
+.street-input-row{display:flex;gap:8px;padding:6px;border:2px solid var(--idle-border);background:var(--idle-field)}.street-input-row:focus-within{outline:3px solid var(--ld-accent);outline-offset:3px}
+.street-idle-page.idle-unified .street-input-row input{flex:1;width:0;min-width:0;max-width:none;border:0;background:transparent;margin:0;padding:10px 12px;outline:none}
+.street-idle-page.idle-unified .street-input-row button{padding:10px 24px;box-shadow:none;flex-shrink:0}
+.street-idle-page.idle-unified #suggestions{position:static;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-height:240px;margin-top:12px;padding:6px;background:#211b30;border:1px solid var(--idle-border);box-shadow:none;gap:6px}
+.street-idle-page.idle-unified .roster-tile{border-radius:2px;min-height:48px}.street-idle-page.idle-unified .roster-tile span{font-size:18px;padding:8px}
+.street-idle-page.idle-unified .hint{font-size:14px;min-height:20px;margin-top:12px;color:#c6b6d5}
+.street-idle-page.idle-unified :is(.history,.idle-finish){grid-column:1/-1}.street-idle-page.idle-unified .history:empty{display:none}
+.street-idle-page.idle-unified .voice-console{gap:12px;padding:20px;width:100%}.street-idle-page.idle-unified .voice-wave{height:60px;gap:5px}.street-idle-page.idle-unified .listen{font-size:20px;padding:12px}.street-idle-page.idle-unified .audio-status{font-size:16px;text-align:center}
+.street-idle-page.idle-unified .emoji-code{font-size:clamp(30px,3vw,48px);padding:25px;text-align:center;overflow-wrap:anywhere}
+.street-idle-page.idle-unified .move-clip{max-width:92%;height:150px}.street-idle-page.idle-unified .stage-clue{font-size:14px;padding:0 10px;text-align:center}
+.street-idle-page.idle-unified .art-window{width:100%;height:100%;min-height:260px}.street-idle-page.idle-unified .stage-badge{font-size:12px;left:12px;bottom:12px}
+.street-idle-page.idle-unified .cabinet[data-mode=finished] .idle-stage{grid-column:1/-1;min-height:340px}.street-idle-page.idle-unified .cabinet[data-mode=finished] .stage-heading{grid-column:1/-1;min-height:150px}
+@media(max-width:700px){
+.idle-unified :is(.rv-tabs,.modes,.tabs){gap:6px;margin:16px 0 20px}.idle-unified :is(.rv-tabs,.modes,.tabs)>button{padding:11px 13px;font-size:16px;min-height:46px}.idle-unified .modes>button>span{font-size:16px}
+.idle-unified :is(.challenge-bar,.hud){padding:12px;gap:10px}.idle-unified .challenge-readout{width:100%}.idle-unified .challenge-readout>span{flex:1}.idle-unified .challenge-readout>span,.idle-unified .challenge-readout>b{font-size:13px;padding:9px}
+.street-idle-page.idle-unified main{width:calc(100% - 24px)}.street-idle-page.idle-unified .topbar{gap:8px}.street-idle-page.idle-unified #new-idle{width:auto;font-size:14px;padding:8px;min-height:44px}.street-idle-page.idle-unified .brand{font-size:21px}
+.street-idle-page.idle-unified .cabinet{grid-template-columns:minmax(0,1fr);padding-top:12px}.street-idle-page.idle-unified .stage-heading{min-height:180px;padding:22px 20px;gap:14px}.street-idle-page.idle-unified .stage-heading h2{font-size:38px}.street-idle-page.idle-unified .stage-heading p{font-size:16px}
+.street-idle-page.idle-unified .idle-stage{min-height:230px;border-left:0;border-top:1px solid #514760}.street-idle-page.idle-unified .classic{display:none}.street-idle-page.idle-unified .search{padding:22px 16px;margin-top:0}.street-idle-page.idle-unified .street-input-row button{padding:10px 14px;font-size:18px}.street-idle-page.idle-unified #suggestions{grid-template-columns:repeat(2,minmax(0,1fr))}.street-idle-page.idle-unified .emoji-code{font-size:46px}
+}
+@media(prefers-reduced-motion:reduce){.idle-unified *{scroll-behavior:auto!important}.idle-unified .art-window .fighter-art{transition:none}}
+.street-idle-page.idle-unified .idle-stage{height:280px}.street-idle-page.idle-unified .art-window{height:280px}.street-idle-page.idle-unified .cabinet[data-mode=portrait] .stage-heading{height:280px}.street-idle-page.idle-unified .art-window .fighter-art{max-height:280px}
+@media(max-width:700px){.street-idle-page.idle-unified .idle-stage,.street-idle-page.idle-unified .art-window{height:240px;min-height:240px}.street-idle-page.idle-unified .cabinet[data-mode=portrait] .stage-heading{height:auto}}
+.idle-unified main{width:calc(100% - 48px);margin-left:auto;margin-right:auto}.idle-unified .modes>button{display:block;min-width:max-content}
+.idle-unified[data-game=lol] .game-shell{padding:24px 0 0}.idle-unified[data-game=lol] .mode-intro{padding:24px 30px;border-left:5px solid var(--ld-accent);background:linear-gradient(90deg,#30274a 30%,#30274aaa),url('/assets/arcade/ahri.jpg') center 35%/cover;min-height:190px}.idle-unified[data-game=lol] .mode-intro h2{font-size:clamp(36px,4.5vw,62px)}.idle-unified[data-game=lol] .game-shell>:not(.mode-intro):not(.challenge-bar){margin-left:30px;margin-right:30px}.idle-unified[data-game=lol] #guessForm{background:#09090d;padding:24px 0}.idle-unified[data-game=lol] .masthead{min-height:100px;padding:18px 24px}.idle-unified[data-game=lol] .masthead h1{font-size:42px;margin-top:5px}.idle-unified[data-game=lol] .classic-brief{padding-top:16px}
+@media(max-width:700px){.idle-unified main{width:calc(100% - 24px)}.idle-unified[data-game=lol] .mode-intro{padding:22px 20px}.idle-unified[data-game=lol] .game-shell>:not(.mode-intro):not(.challenge-bar){margin-left:16px;margin-right:16px}}
+
+/* OST uses the shared Idle panel, with a compact listening console. */
+.street-idle-page.idle-unified .idle-stage.ost{height:auto;min-height:330px;padding:20px 16px}
+.ost-console{width:100%;max-width:440px;margin:auto;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}.ost-console .voice-wave{height:56px;width:100%;max-width:240px;margin:0}.ost-console .listen{width:100%;min-height:48px;font-size:20px}.ost-console p{margin:0;font-size:14px;line-height:1.4}.ost-lengths{display:flex;gap:8px;width:100%}.ost-lengths span{flex:1;border:1px solid #746181;padding:7px 4px;font-size:16px;color:#b8a9c6}.ost-lengths .current{background:var(--ld-accent);border-color:var(--ld-accent);color:#171528;font-weight:800}.ost-lengths .unlocked{border-color:var(--ld-accent);color:var(--ld-accent)}.ost-skip{font-size:14px;padding:10px;min-height:44px}.idle-finish>.ost-console{margin-top:20px}.ost-console [hidden]{display:none!important}
+@media(max-width:700px){.street-idle-page.idle-unified .idle-stage.ost{min-height:320px}.cabinet[data-mode=ost] .stage-heading{min-height:150px!important}.cabinet[data-mode=ost] .stage-heading h2{font-size:32px!important}}
